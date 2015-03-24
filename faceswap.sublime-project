@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"sublimegdb_commandline": "gdb --interpreter=mi ./faceswap",
+		"sublimegdb_workingdir": "/home/emile/LinuxProgramming/faceswap/source"
+	}
+}

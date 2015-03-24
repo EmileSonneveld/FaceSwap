@@ -1,3 +1,6 @@
+*.sublime-workspace
+source/faceswap
+
 # Compiled Object files
 *.slo
 *.lo
