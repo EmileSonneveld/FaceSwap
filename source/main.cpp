@@ -21,7 +21,7 @@ using namespace std;
 
 
 const char * help_string = "\
-## Swap faces from a picture with a set of faces from choice ##
+## Swap faces from a picture with a set of faces from choice ## \n\
 This program assumes hardcoded paths: \n\
 - source -- must be current dir \n\
     - faceswap -- executable \n\
