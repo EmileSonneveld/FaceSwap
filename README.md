@@ -1,6 +1,22 @@
 # FaceSwap
 Swap faces from a picture with a set of faces from choice
 
+git clone --recursive https://github.com/EmileSonneveld/FaceSwap
+cd FaceSwap
+
+c++ version
+===========
+sudo apt-get install libopencv-dev
+cd source
+make
+
+ruby version
+================
+brew install homebrew/science/opencv
+sudo gem install ruby-opencv -- --with-opencv-dir=`brew --prefix opencv`
+cd ruby_version
+ruby main.rb
+
 
 This program assumes hardcoded paths:
 - source -- must be current dir
