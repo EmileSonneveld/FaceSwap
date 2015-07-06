@@ -1,40 +1,19 @@
-
 os:
-#  - osx
-  - linux
-
-#sudo: false
-# addons:
-#   apt:
-#     sources:
-#     - ubuntu-toolchain-r-test
-#     packages:
-#     - g++-4.8
-# #    - xorg-dev
-
-
+- linux
 before_install:
-  - cmake --version
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-    sudo apt-get update -qq;
-    echo $CXX;
-    if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi;
-    sudo apt-get install -y libopencv-dev; 
-    fi;
-  - echo "$TRAVIS_OS_NAME";
-
+- cmake --version
+- if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; echo $CXX; if
+  [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi; sudo apt-get install
+  -y libopencv-dev; fi;
+- echo "$TRAVIS_OS_NAME";
 language: cpp
-
 before_script:
-  - sh source
-
+- sh source
 script: make
-
-#TODO http://docs.travis-ci.com/user/deployment/releases/
-#deploy:
-#  provider: releases
-#  api_key: "GITHUB OAUTH TOKEN"
-#  file: "FILE TO UPLOAD"
-#  skip_cleanup: true
-#  on:
-#    tags: true
+deploy:
+  provider: releases
+  api_key:
+    secure: dmJlZAXBYgJtIVeaSanoy5jqAuAp2073/VScp0cDkPWi0Wxs01nBT0MHovsh5JqwYnnqyFBGjW9uPlAWPK2BM2ivXi2yZsP/acxDfRgN3Xm+oHpJc5MQggjXMJuDPaOhL4ghLbCL37P8onveGSZQmaf1U4MdlkcyoY/IRG3n/hY=
+  file: ./source/faceswap
+  on:
+    repo: EmileSonneveld/FaceSwap
