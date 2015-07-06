@@ -1,8 +1,10 @@
 # FaceSwap
 Swap faces from a picture with a set of faces from choice
 
+```
 git clone --recursive https://github.com/EmileSonneveld/FaceSwap
 cd FaceSwap
+```
 
 c++ version
 ===========
