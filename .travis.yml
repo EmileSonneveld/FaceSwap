@@ -8,7 +8,7 @@ before_install:
 - echo "$TRAVIS_OS_NAME";
 language: cpp
 before_script:
-- sh source
+- cd source
 script: make
 deploy:
   provider: releases
