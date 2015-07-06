@@ -6,18 +6,23 @@ cd FaceSwap
 
 c++ version
 ===========
+```
 sudo apt-get install libopencv-dev
 cd source
 make
+```
 
 ruby version
-================
+============
+```
 brew install homebrew/science/opencv
 sudo gem install ruby-opencv -- --with-opencv-dir=`brew --prefix opencv`
 cd ruby_version
 ruby main.rb
+```
 
-
+usage
+=====
 This program assumes hardcoded paths:
 - source -- must be current dir
     - faceswap -- executable
@@ -37,3 +42,5 @@ This program assumes hardcoded paths:
 - photos -- for the sake of path's in the SVG file it's advised to place your pictures here
 
 The outputted SVG is viewed best with a browser.
+
+(there is still need for an svg rasterizer)
