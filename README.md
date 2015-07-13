@@ -12,6 +12,16 @@ c++ version
 sudo apt-get install libopencv-dev
 cd source
 make
+
+# prpbably need to build opencv from source
+cd ~/opencv
+mkdir release
+cd release
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+make
+# wait some minutes
+sudo make install
+
 ```
 
 ruby version
@@ -45,4 +55,13 @@ This program assumes hardcoded paths:
 
 The outputted SVG is viewed best with a browser.
 
-(there is still need for an svg rasterizer)
+There is still need for an svg rasterizer.
+
+I would like to use the firefox rasterizer for that, but that seems overkill
+Inkskape seems a better solution
+
+```
+sudo apt-get install inkscape
+inkscape --export-png=FILENAME
+
+```
