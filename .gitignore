@@ -1,5 +1,5 @@
 *.sublime-workspace
-source/faceswap
+#source/faceswap
 
 CMakeCache.txt
 CMakeFiles

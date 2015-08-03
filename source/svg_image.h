@@ -16,7 +16,7 @@ public:
 		m_rect = rect;
 	}
 
-
+	
 private:
 	std::vector<std::string> m_file_list;
 	std::string m_template_string;

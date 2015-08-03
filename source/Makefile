@@ -114,6 +114,30 @@ faceswap/fast:
 	$(MAKE) -f CMakeFiles/faceswap.dir/build.make CMakeFiles/faceswap.dir/build
 .PHONY : faceswap/fast
 
+face_feed.o: face_feed.cpp.o
+.PHONY : face_feed.o
+
+# target to build an object file
+face_feed.cpp.o:
+	$(MAKE) -f CMakeFiles/faceswap.dir/build.make CMakeFiles/faceswap.dir/face_feed.cpp.o
+.PHONY : face_feed.cpp.o
+
+face_feed.i: face_feed.cpp.i
+.PHONY : face_feed.i
+
+# target to preprocess a source file
+face_feed.cpp.i:
+	$(MAKE) -f CMakeFiles/faceswap.dir/build.make CMakeFiles/faceswap.dir/face_feed.cpp.i
+.PHONY : face_feed.cpp.i
+
+face_feed.s: face_feed.cpp.s
+.PHONY : face_feed.s
+
+# target to generate assembly for a file
+face_feed.cpp.s:
+	$(MAKE) -f CMakeFiles/faceswap.dir/build.make CMakeFiles/faceswap.dir/face_feed.cpp.s
+.PHONY : face_feed.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -171,6 +195,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... faceswap"
+	@echo "... face_feed.o"
+	@echo "... face_feed.i"
+	@echo "... face_feed.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

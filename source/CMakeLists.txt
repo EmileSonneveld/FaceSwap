@@ -22,7 +22,7 @@ message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 # Declare the executable target built from your sources
-add_executable(faceswap main.cpp svg_image.cpp)
+add_executable(faceswap main.cpp svg_image.cpp face_feed.cpp)
 
 target_compile_features(faceswap PRIVATE cxx_range_for)
 

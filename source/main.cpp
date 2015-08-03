@@ -14,10 +14,11 @@
 
 #include <stdio.h>
 #include "svg_image.h"
+#include "face_feed.h"
 
 
 using namespace std;
-//using namespace cv;
+using namespace cv;
 
 
 const char * help_string = "\
@@ -125,7 +126,7 @@ int main( int argc, const char** argv )
     }
 
     file_target_svg = MakeTargetSvgPath(file_original);
-    cout << "Output ile: " << file_target_svg << endl;
+    cout << "Output file: " << file_target_svg << endl;
     // End of freacking input stuff //
 
 
@@ -142,22 +143,46 @@ int main( int argc, const char** argv )
 
 
 
-    cv::Mat image = cv::imread(file_original);   // Read the file
-    if(!image.data )
+    cv::Mat bigImage = cv::imread(file_original);   // Read the file
+    if(!bigImage.data )
     {
-        cout <<  "Could not open or find the image" << std::endl ;
+        cout <<  "Could not open or find the bigImage: " << file_original << std::endl;
         return -1;
     }
 
     std::vector<cv::Rect> faces_all, faces;
 
-    faces = detectAndDraw( image, cascades[1], scale, tryflip );
+    faces = detectAndDraw( bigImage, cascades[1], scale, tryflip );
     faces_all.insert(faces_all.end(), faces.begin(), faces.end());
 
-    //faces = detectAndDraw( image, cascade, scale, tryflip );
+    //faces = detectAndDraw( bigImage, cascade, scale, tryflip );
     //faces_all.insert(faces_all.end(), faces.begin(), faces.end());
 
+    face_feed();
 
+    // Draw the found faces in a window //////////////////
+    if(false) // still broken
+    {
+        for(cv::Rect& rec : faces_all)
+        {
+            cout << "rec.x: " << rec << "\n";
+            cv::Mat smallImage = cv::imread("../photo_heads/birt-blue.png");
+
+            cv::Size t = smallImage.size();
+            Mat roi(bigImage, cv::Rect(0,0, t.width, t.height) );
+            smallImage.copyTo(roi);
+
+            //cv::Rect rectRoi( cv::Point( rec.x, rec.y ), cv::Size( rec.width, rec.height ));
+            //cv::Mat destinationROI = bigImage( rectRoi );
+            //smallImage.copyTo( destinationROI );
+        }
+
+        namedWindow( "Preview Window", CV_WINDOW_AUTOSIZE );
+        imshow( "Preview Window", bigImage );
+        waitKey(0);
+    }
+
+    // Now serialize the stuff //////////////////////
 
     std::stringstream ss("", ios_base::app | ios_base::out);
 
@@ -174,8 +199,8 @@ int main( int argc, const char** argv )
     auto file_content = file_to_string("file-template.xml");
     replace_var(file_content, "$original_picture_here", file_original);
     replace_var(file_content, "$img_attributes_here", ss.str());
-    replace_var(file_content, "$image_width", std::to_string(image.cols));
-    replace_var(file_content, "$image_height", std::to_string(image.rows));
+    replace_var(file_content, "$image_width", std::to_string(bigImage.cols));
+    replace_var(file_content, "$image_height", std::to_string(bigImage.rows));
 
     ofstream myfile;
     myfile.open (file_target_svg, ios::out);
