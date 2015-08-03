@@ -1,6 +1,13 @@
 *.sublime-workspace
 source/faceswap
-/source_build/*
+
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
 
 # Compiled Object files
 *.slo
