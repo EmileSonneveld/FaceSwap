@@ -5,7 +5,8 @@ sudo: false
 
 addons:
   apt:
-    sources:
+    packages:
+    - cmake
     - python-opencv
     - gcc-5
 
