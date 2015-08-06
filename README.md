@@ -1,20 +1,21 @@
 # FaceSwap
 Swap faces from a picture with a set of faces from choice
 
+This should be good enauf for mac:
 ```
 git clone --recursive https://github.com/EmileSonneveld/FaceSwap
-cd FaceSwap
-```
-
-c++ version
-===========
-```
 sudo apt-get install libopencv-dev
-cd source
+cd FaceSwap/source
 make
+./faceswap
 
+```
+
+Build opencv from source
+========================
+```
 # prpbably need to build opencv from source
-cd ~/opencv
+cd ./opencv
 mkdir release
 cd release
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
@@ -24,18 +25,17 @@ sudo make install
 
 ```
 
-ruby version
-============
-```
-brew install homebrew/science/opencv
-sudo gem install ruby-opencv -- --with-opencv-dir=`brew --prefix opencv`
-cd ruby_version
-ruby main.rb
-```
-
 usage
 =====
-This program assumes hardcoded paths:
+basically:
+
+```
+sudo apt-get install inkscape
+cd FaceSwap/source
+./faceswap --dest=~/faceswap-picture-here.png
+```
+
+The file structure is pretty rigid and goes as follow:
 - source -- must be current dir
     - faceswap -- executable
     - file-template.xml
@@ -53,15 +53,6 @@ This program assumes hardcoded paths:
     - *.png
 - photos -- for the sake of path's in the SVG file it's advised to place your pictures here
 
-The outputted SVG is viewed best with a browser.
 
-There is still need for an svg rasterizer.
-
-I would like to use the firefox rasterizer for that, but that seems overkill
-Inkskape seems a better solution
-
-```
-sudo apt-get install inkscape
-inkscape --export-png=FILENAME
-
-```
+Note to self:
+Next time, don't use c++. Go for python instead

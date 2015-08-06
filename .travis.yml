@@ -3,12 +3,12 @@ os:
 before_install:
 - cmake --version
 - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; echo $CXX; if
-  [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi; sudo apt-get install
-  -y libopencv-dev; fi;
+  [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi; 
+- sudo apt-get install libopencv-dev; fi;
 - echo "$TRAVIS_OS_NAME";
 language: cpp
 before_script:
-- cd source
+- setup.sh
 script: make
 deploy:
   provider: releases

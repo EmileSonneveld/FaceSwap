@@ -84,11 +84,11 @@ int main( int argc, const char** argv )
     const string tryFlipOpt = "--try-flip";
     size_t tryFlipOptLen = tryFlipOpt.length();
 
-    const string destOpt = "--dest";
-    size_t destLen = tryFlipOpt.length();
+    const string destOpt = "--dest=";
+    size_t destOptLen = destOpt.length();
 
     bool tryflip = false;
-    string destPath ="photo_result_png/pic_example.png";
+    string destPath ="./photo_result_png/pic_example.png";
     double scale = 1;
 
     for( int i = 1; i < argc; i++ )
@@ -116,9 +116,10 @@ int main( int argc, const char** argv )
             tryflip = true;
             cout << " will try to flip image horizontally to detect assymetric objects.\n";
         }
-        else if( destOpt.compare( 0, destLen, argv[i], destLen ) == 0 )
+        else if( destOpt.compare( 0, destOptLen, argv[i], destOptLen ) == 0 )
         {
-            destPath = argv[i];
+            destPath = string(argv[i]);
+            destPath = destPath.substr(destOptLen);
             cout << " Destenation specified.\n";
         }
         else if( helpOpt.compare( 0, helpOptLen, argv[i], helpOptLen ) == 0 )
@@ -217,11 +218,10 @@ int main( int argc, const char** argv )
     myfile << file_content;
     myfile.close();
 
-    cout << "The rasterize.sh script will be executed" << endl;
     string command = "../rasterize.sh ";
     command.append(destPath);
+    cout << "Execute: " << command << endl;
     system(command.c_str());
-
 
     return 0;
 }

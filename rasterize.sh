@@ -12,7 +12,8 @@ DEST=$PWD"/photo_result_png/pic_example.png"
 if [ $# -eq 0 ]; then
 	echo "using deafoult path"
 else
-	DEST=&1
+	echo "Overwriting path with argument 1 "$1
+	DEST=$1
 fi
 
 echo "Dest:" $DEST
