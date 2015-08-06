@@ -51,7 +51,7 @@
     </rdf:RDF>
   </metadata>
   <image
-     xlink:href="../photos/pic_example.jpg"
+     xlink:href="../photo_orig/pic_example.jpg"
      height="732"
      width="1100"
      y="0"
@@ -151,28 +151,6 @@
     xlink:href="../photo_heads/birt-blue.png"
     height="29"
     width="29"
-    y="459"
-    x="532"/>
-  <!--flowRoot
-    xml:space="preserve"
-    id="flowRoot2993"
-    style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-    transform="translate(-91.428571,307.14286)"><flowRegion
-      id="flowRegion2995"><rect
-        id="rect2997"
-        width="400"
-        height="200"
-        x="459"
-        y="532"
-        style="font-size:12px" /></flowRegion><flowPara
-      id="flowPara2999">yo</flowPara>
-  </flowRoot-->
-
-  <!-- Face match -->
-  <image
-    xlink:href="../photo_heads/birt-blue.png"
-    height="29"
-    width="29"
     y="372"
     x="907"/>
   <!--flowRoot
@@ -186,6 +164,28 @@
         height="200"
         x="372"
         y="907"
+        style="font-size:12px" /></flowRegion><flowPara
+      id="flowPara2999">yo</flowPara>
+  </flowRoot-->
+
+  <!-- Face match -->
+  <image
+    xlink:href="../photo_heads/birt-blue.png"
+    height="29"
+    width="29"
+    y="459"
+    x="532"/>
+  <!--flowRoot
+    xml:space="preserve"
+    id="flowRoot2993"
+    style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+    transform="translate(-91.428571,307.14286)"><flowRegion
+      id="flowRegion2995"><rect
+        id="rect2997"
+        width="400"
+        height="200"
+        x="459"
+        y="532"
         style="font-size:12px" /></flowRegion><flowPara
       id="flowPara2999">yo</flowPara>
   </flowRoot-->

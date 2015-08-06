@@ -7,6 +7,7 @@
 #include <opencv2/videoio/videoio_c.h>
 #include <opencv2/highgui/highgui_c.h>
 
+#include <string>
 #include <cctype>
 #include <iostream>
 #include <fstream>
@@ -30,7 +31,7 @@ This program assumes hardcoded paths: \n\
     - img-template.xml \n\
     - [source code] \n\
 - photo_result -- will cointain the svg's \n\
-    - *.svg -- refers to images with relative paths \n\
+    - *.svg -- The images in the svg are references \n\
 - haarcascades -- image recongnition data \n\
     - haarcascade_frontalface_alt.xml \n\
     - haarcascade_frontalface_alt2.xml \n\
@@ -39,7 +40,7 @@ This program assumes hardcoded paths: \n\
     - ... \n\
 - photo_heads -- contains the photos's of heads you want to set_rect \n\
     - *.png \n\
-- photos -- for the sake of path's in the SVG file it's advised to place your pictures here \n\
+- photo_orig -- for the sake of path's in the SVG file it's advised to place your pictures here \n\
  \n\
 The outputted SVG is viewed best with a browser. \n\
 ";
@@ -54,7 +55,7 @@ const char* cascadeNames[] =  {
     "../haarcascades/haarcascade_frontalface_default.xml"
 };
 
-std::string file_original = "../photos/pic_example.jpg";
+std::string file_original = "../photo_orig/pic_example.jpg";
 std::string file_target_svg = "../photo_result/default_path.svg";
 
 
@@ -83,7 +84,11 @@ int main( int argc, const char** argv )
     const string tryFlipOpt = "--try-flip";
     size_t tryFlipOptLen = tryFlipOpt.length();
 
+    const string destOpt = "--dest";
+    size_t destLen = tryFlipOpt.length();
+
     bool tryflip = false;
+    string destPath ="photo_result_png/pic_example.png";
     double scale = 1;
 
     for( int i = 1; i < argc; i++ )
@@ -109,7 +114,12 @@ int main( int argc, const char** argv )
         else if( tryFlipOpt.compare( 0, tryFlipOptLen, argv[i], tryFlipOptLen ) == 0 )
         {
             tryflip = true;
-            cout << " will try to flip image horizontally to detect assymetric objects\n";
+            cout << " will try to flip image horizontally to detect assymetric objects.\n";
+        }
+        else if( destOpt.compare( 0, destLen, argv[i], destLen ) == 0 )
+        {
+            destPath = argv[i];
+            cout << " Destenation specified.\n";
         }
         else if( helpOpt.compare( 0, helpOptLen, argv[i], helpOptLen ) == 0 )
         {
@@ -206,6 +216,11 @@ int main( int argc, const char** argv )
     myfile.open (file_target_svg, ios::out);
     myfile << file_content;
     myfile.close();
+
+    cout << "The rasterize.sh script will be executed" << endl;
+    string command = "../rasterize.sh ";
+    command.append(destPath);
+    system(command.c_str());
 
 
     return 0;
