@@ -1,6 +1,14 @@
 os:
 - linux
 
+sudo: false
+
+addons:
+  apt:
+    sources:
+    - python-opencv
+    - gcc-5
+
 before_install:
   # g++4.8.1
   - if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
