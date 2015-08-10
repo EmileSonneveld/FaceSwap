@@ -29,6 +29,7 @@ addons:
 language: cpp
 script:
   - cd source
+  - cmake .
   - make
 deploy:
   provider: releases
