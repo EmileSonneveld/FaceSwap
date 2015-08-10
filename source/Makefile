@@ -42,10 +42,10 @@ RM = /usr/local/Cellar/cmake/3.2.3/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/EmileSonneveld/personal/FaceSwap/source
+CMAKE_SOURCE_DIR = /Users/EmileSonneveld/personal/faceSwap/source
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/EmileSonneveld/personal/FaceSwap/source
+CMAKE_BINARY_DIR = /Users/EmileSonneveld/personal/faceSwap/source
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -72,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/EmileSonneveld/personal/FaceSwap/source/CMakeFiles /Users/EmileSonneveld/personal/FaceSwap/source/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/EmileSonneveld/personal/faceSwap/source/CMakeFiles /Users/EmileSonneveld/personal/faceSwap/source/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/EmileSonneveld/personal/FaceSwap/source/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/EmileSonneveld/personal/faceSwap/source/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
