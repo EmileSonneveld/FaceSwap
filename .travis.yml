@@ -28,7 +28,8 @@ addons:
 
 language: cpp
 script:
-  - . ./.travis.sh
+  - cd source
+  - make
 deploy:
   provider: releases
   api_key:
