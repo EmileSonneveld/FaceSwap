@@ -5,7 +5,7 @@
 #include <iostream>
 #include "tinydir.h"
 
-#include <opencv2/core/utility.hpp>
+#include <opencv2/core/core.hpp>
 
 using namespace std;
 
