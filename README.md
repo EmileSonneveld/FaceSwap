@@ -1,4 +1,7 @@
 # FaceSwap
+
+<img src="https://github.com/EmileSonneveld/FaceSwap/blob/master/groupPicture.jpg"/>
+
 Swap faces from a picture with a set of faces from choice
 
 
