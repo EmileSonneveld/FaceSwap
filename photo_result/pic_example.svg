@@ -51,7 +51,7 @@
     </rdf:RDF>
   </metadata>
   <image
-     xlink:href="../photos/pic_example.jpg"
+     xlink:href="../photo_orig/pic_example.jpg"
      height="732"
      width="1100"
      y="0"
@@ -82,7 +82,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/bird-cute.png"
+    xlink:href="../photo_heads/birt-blue.png"
     height="27"
     width="27"
     y="362"
@@ -104,7 +104,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/birt-black.png"
+    xlink:href="../photo_heads/bird-cute.png"
     height="29"
     width="29"
     y="372"
@@ -126,7 +126,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/birt-black.png"
+    xlink:href="../photo_heads/bird-cute.png"
     height="29"
     width="29"
     y="382"
@@ -148,7 +148,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/birt-blue.png"
+    xlink:href="../photo_heads/birt-black.png"
     height="26"
     width="26"
     y="383"
@@ -192,7 +192,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/birt-blue.png"
+    xlink:href="../photo_heads/birt-black.png"
     height="29"
     width="29"
     y="445"
@@ -214,7 +214,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/birt-black.png"
+    xlink:href="../photo_heads/bird-cute.png"
     height="29"
     width="29"
     y="459"
@@ -236,7 +236,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/bird-cute.png"
+    xlink:href="../photo_heads/birt-blue.png"
     height="28"
     width="28"
     y="462"
@@ -258,7 +258,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/birt-black.png"
+    xlink:href="../photo_heads/bird-cute.png"
     height="28"
     width="28"
     y="510"
@@ -280,7 +280,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/bird-cute.png"
+    xlink:href="../photo_heads/birt-blue.png"
     height="32"
     width="32"
     y="338"
@@ -302,7 +302,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/birt-black.png"
+    xlink:href="../photo_heads/bird-cute.png"
     height="32"
     width="32"
     y="357"
@@ -324,7 +324,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/bird-cute.png"
+    xlink:href="../photo_heads/birt-blue.png"
     height="29"
     width="29"
     y="378"
@@ -390,7 +390,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/birt-black.png"
+    xlink:href="../photo_heads/bird-cute.png"
     height="35"
     width="35"
     y="457"
@@ -412,7 +412,7 @@
 
   <!-- Face match -->
   <image
-    xlink:href="../photo_heads/bird-cute.png"
+    xlink:href="../photo_heads/birt-blue.png"
     height="38"
     width="38"
     y="526"

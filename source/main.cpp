@@ -1,12 +1,9 @@
-#include <opencv2/objdetect.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/core/utility.hpp>
-#include <opencv2/imgcodecs.hpp>
+#include <opencv2/objdetect/objdetect.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/core/core.hpp>
 
-#include <opencv2/videoio/videoio_c.h>
-#include <opencv2/highgui/highgui_c.h>
-
+#include <string>
 #include <cctype>
 #include <iostream>
 #include <fstream>
@@ -14,10 +11,11 @@
 
 #include <stdio.h>
 #include "svg_image.h"
+#include "face_feed.h"
 
 
 using namespace std;
-//using namespace cv;
+using namespace cv;
 
 
 const char * help_string = "\
@@ -29,7 +27,7 @@ This program assumes hardcoded paths: \n\
     - img-template.xml \n\
     - [source code] \n\
 - photo_result -- will cointain the svg's \n\
-    - *.svg -- refers to images with relative paths \n\
+    - *.svg -- The images in the svg are references \n\
 - haarcascades -- image recongnition data \n\
     - haarcascade_frontalface_alt.xml \n\
     - haarcascade_frontalface_alt2.xml \n\
@@ -38,7 +36,7 @@ This program assumes hardcoded paths: \n\
     - ... \n\
 - photo_heads -- contains the photos's of heads you want to set_rect \n\
     - *.png \n\
-- photos -- for the sake of path's in the SVG file it's advised to place your pictures here \n\
+- photo_orig -- for the sake of path's in the SVG file it's advised to place your pictures here \n\
  \n\
 The outputted SVG is viewed best with a browser. \n\
 ";
@@ -53,7 +51,7 @@ const char* cascadeNames[] =  {
     "../haarcascades/haarcascade_frontalface_default.xml"
 };
 
-std::string file_original = "../photos/pic_example.jpg";
+std::string file_original = "../photo_orig/pic_example.jpg";
 std::string file_target_svg = "../photo_result/default_path.svg";
 
 
@@ -82,7 +80,11 @@ int main( int argc, const char** argv )
     const string tryFlipOpt = "--try-flip";
     size_t tryFlipOptLen = tryFlipOpt.length();
 
+    const string destOpt = "--dest=";
+    size_t destOptLen = destOpt.length();
+
     bool tryflip = false;
+    string destPath ="./photo_result_png/pic_example.png";
     double scale = 1;
 
     for( int i = 1; i < argc; i++ )
@@ -108,7 +110,13 @@ int main( int argc, const char** argv )
         else if( tryFlipOpt.compare( 0, tryFlipOptLen, argv[i], tryFlipOptLen ) == 0 )
         {
             tryflip = true;
-            cout << " will try to flip image horizontally to detect assymetric objects\n";
+            cout << " will try to flip image horizontally to detect assymetric objects.\n";
+        }
+        else if( destOpt.compare( 0, destOptLen, argv[i], destOptLen ) == 0 )
+        {
+            destPath = string(argv[i]);
+            destPath = destPath.substr(destOptLen);
+            cout << " Destenation specified.\n";
         }
         else if( helpOpt.compare( 0, helpOptLen, argv[i], helpOptLen ) == 0 )
         {
@@ -125,7 +133,7 @@ int main( int argc, const char** argv )
     }
 
     file_target_svg = MakeTargetSvgPath(file_original);
-    cout << "Output ile: " << file_target_svg << endl;
+    cout << "Output file: " << file_target_svg << endl;
     // End of freacking input stuff //
 
 
@@ -142,22 +150,46 @@ int main( int argc, const char** argv )
 
 
 
-    cv::Mat image = cv::imread(file_original);   // Read the file
-    if(!image.data )
+    cv::Mat bigImage = cv::imread(file_original);   // Read the file
+    if(!bigImage.data )
     {
-        cout <<  "Could not open or find the image" << std::endl ;
+        cout <<  "Could not open or find the bigImage: " << file_original << std::endl;
         return -1;
     }
 
     std::vector<cv::Rect> faces_all, faces;
 
-    faces = detectAndDraw( image, cascades[1], scale, tryflip );
+    faces = detectAndDraw( bigImage, cascades[1], scale, tryflip );
     faces_all.insert(faces_all.end(), faces.begin(), faces.end());
 
-    //faces = detectAndDraw( image, cascade, scale, tryflip );
+    //faces = detectAndDraw( bigImage, cascade, scale, tryflip );
     //faces_all.insert(faces_all.end(), faces.begin(), faces.end());
 
+    face_feed();
 
+    // Draw the found faces in a window //////////////////
+    if(false) // still broken
+    {
+        for(cv::Rect& rec : faces_all)
+        {
+            cout << "rec.x: " << rec << "\n";
+            cv::Mat smallImage = cv::imread("../photo_heads/birt-blue.png");
+
+            cv::Size t = smallImage.size();
+            Mat roi(bigImage, cv::Rect(0,0, t.width, t.height) );
+            smallImage.copyTo(roi);
+
+            //cv::Rect rectRoi( cv::Point( rec.x, rec.y ), cv::Size( rec.width, rec.height ));
+            //cv::Mat destinationROI = bigImage( rectRoi );
+            //smallImage.copyTo( destinationROI );
+        }
+
+        namedWindow( "Preview Window", CV_WINDOW_AUTOSIZE );
+        imshow( "Preview Window", bigImage );
+        waitKey(0);
+    }
+
+    // Now serialize the stuff //////////////////////
 
     std::stringstream ss("", ios_base::app | ios_base::out);
 
@@ -174,14 +206,18 @@ int main( int argc, const char** argv )
     auto file_content = file_to_string("file-template.xml");
     replace_var(file_content, "$original_picture_here", file_original);
     replace_var(file_content, "$img_attributes_here", ss.str());
-    replace_var(file_content, "$image_width", std::to_string(image.cols));
-    replace_var(file_content, "$image_height", std::to_string(image.rows));
+    replace_var(file_content, "$image_width", std::to_string(bigImage.cols));
+    replace_var(file_content, "$image_height", std::to_string(bigImage.rows));
 
     ofstream myfile;
     myfile.open (file_target_svg, ios::out);
     myfile << file_content;
     myfile.close();
 
+    string command = "../rasterize.sh ";
+    command.append(destPath);
+    cout << "Execute: " << command << endl;
+    system(command.c_str());
 
     return 0;
 }

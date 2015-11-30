@@ -1,4 +1,4 @@
-#include <opencv2/core/utility.hpp>
+#include <opencv2/core/core.hpp>
 
 #include <vector>
 #include <string>
@@ -16,7 +16,7 @@ public:
 		m_rect = rect;
 	}
 
-
+	
 private:
 	std::vector<std::string> m_file_list;
 	std::string m_template_string;
